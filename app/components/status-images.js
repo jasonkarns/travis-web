@@ -9,6 +9,20 @@ export default Ember.Component.extend({
   classNames: ['popup', 'status-images'],
   formats: ['Image URL', 'Markdown', 'Textile', 'Rdoc', 'AsciiDoc', 'RST', 'Pod', 'CCTray'],
 
+  branches: function() {
+    let branches = this.get('repo.branches');
+
+    if(branches.get('length')) {
+      return branches.map(function(branch) {
+        return branch.get('commit.branch');
+      });;
+    } else {
+      return ['master'];
+    }
+  }.property('repo.branches.[]'),
+
+  branchesAreLoaded: Ember.computed.alias('repo.branches.isLoaded'),
+
   actions: {
     close() {
       return this.get('popup').close();

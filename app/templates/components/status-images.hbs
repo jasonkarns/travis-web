@@ -1,10 +1,10 @@
 <a href="#" class="close" {{action "close"}}></a>
 <p>
   <label>Branch:</label>
-  {{#if branches.isLoaded}}
+  {{#if branchesAreLoaded}}
     {{#x-select value=branch}}
       {{#each branches as |branch|}}
-        {{#x-option value=branch.commit.branch}}{{branch.commit.branch}}{{/x-option}}
+        {{#x-option value=branch}}{{branch}}{{/x-option}}
       {{/each}}
     {{/x-select}}
   {{else}}
